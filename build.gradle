@@ -1,4 +1,6 @@
 apply plugin: 'clojure-min'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
 
 clojure {
     aotCompile = true
@@ -15,6 +17,7 @@ buildscript {
 
     dependencies {
         classpath "clojuresque:clojuresque-base:1.6.0"
+        classpath "org.akhikhl.gretty:gretty:1.4.0"
     }
 }
 
@@ -27,5 +30,8 @@ group = 'com.lapots.platform.web'
 
 dependencies {
     compile "org.clojure:clojure:1.8.0"
-}
+    compile "ring:ring:1.5.1"
+    compile "ring:ring-jetty-adapter:1.5.1"
 
+    providedCompile "javax.servlet:javax.servlet-api:4.0.0-b03"
+}
