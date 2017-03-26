@@ -72,25 +72,16 @@ Thumbs.db
 applications/
 
 ## angular and co.
-/benchpress-build/
-gen_docs.disable
-test.disable
-regression/temp*.html
-performance/temp*.html
-*~
-angular.js.tmproj
-node_modules/
-typings/
-bower_components/
-angular.xcodeproj
-.idea
-.agignore
-.lvimrc
-libpeerconnection.log
-npm-debug.log
-/tmp/
-/scripts/bower/bower-*
-.vscode
-*.stackdump
+system-config.js*
+src/main/webapp/js/app/*.js
+src/main/webapp/js/*.js
+src/main/webapp/js/app/*.map
+src/main/webapp/js/*.map
+node_modules
+jspm_packages
+bower_components
+aot/*
+dist/*
+yarn.lock
 
 *.xz

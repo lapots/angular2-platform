@@ -1,12 +1,24 @@
 (ns com.lapots.platform.web.core
     (:use ring.adapter.jetty)
-    (:require [ring.util.response :as response]))
+    (:use com.lapots.platform.web.router.core)
+    (:require [ring.middleware.reload :refer [wrap-reload]])
+    (:import [org.eclipse.jetty.server.handler StatisticsHandler])
+    (:gen-class))
 
-; that is default handler of requests
-(defn handler [request]
-    (response/response
-        (str "<html><body> your IP is: "
-             (:remote-addr request)
-             "</body></html>")))
+(def a-minute 60000)
 
-(run-jetty handler {:port 8080 })
+(defn conf
+    [server]
+    (let [stats-handler (StatisticsHandler.)
+          default-handler (.getHandler server)]
+        (.setHandler stats-handler default-handler)
+        (.setHandler server stats-handler)
+        (.setStopTimeout server a-minute)
+        (.setStopAtShutdown server true)))
+
+(def app
+    (-> routes
+        wrap-reload))
+
+(defn -main [& args]
+    (run-jetty app {:port 3000 :configurator conf :join? false}))
