@@ -10,7 +10,7 @@
 
 (defn wrapped-file-response [request]
     (println "Attempt to read index.html")
-    (resp/resource-response (clojure.java.io/resource "index.html")))
+    (resp/resource-response "index.html" {:root "resources"}))
 
 (defroutes routes
            (GET "/" request rest-handler)
