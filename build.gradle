@@ -43,14 +43,13 @@ dependencies {
 }
 
 node {
-    version="7.7.4"
-    distBaseUrl="https://nodejs.org/dist"
-    download="true"
-    workDir=file("${project.buildDir}/nodejs")
-    nodeModulesDir=file("${project.projectDir}")
+    version = "7.7.4"
+    distBaseUrl = "https://nodejs.org/dist"
+    download = "true"
+    workDir = file("${project.buildDir}/nodejs")
+    nodeModulesDir = file("${project.projectDir}")
 }
 
-// dependsOn: npmStart to start Node
 task startServer(dependsOn: classes, type: JavaExec) {
     main = 'com.lapots.platform.web.core'
     classpath = sourceSets.main.runtimeClasspath
